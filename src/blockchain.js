@@ -2,13 +2,13 @@ var server = require('../src/server');
 var errormsg;
 var parameters = [];
 
-
+var server= new server();
 module.exports = class BlockChain
 {  
-   constructor(server,parameters)
+   constructor(server)
      {
          this.server=server;
-         this.parameters=parameters;
+         
      }
 
 /**
@@ -16,9 +16,10 @@ module.exports = class BlockChain
  *
  * @param {module:rpc/rpc~methodCallback} callback - The callback function.
  */
-getInfo = function (server,cb) {
-  this.server = server;
-  server.prototype.serverPost("burrow.getBlockchainInfo",this.server,function(error,data){
+getInfo = function (cb) {
+
+  parameter={}
+  server.serverPost("burrow.getBlockchainInfo",this.server,parameter,function(error,data){
     if(error) return cb(error);
     return cb(null, data);
   });
@@ -29,9 +30,10 @@ getInfo = function (server,cb) {
  *
  * @param {module:rpc/rpc~methodCallback} callback - The callback function.
  */
-getChainId = function (server,cb) {
-  this.server = server;
-  server.prototype.serverPost("burrow.getChainId",this.server,function(error,data){
+getChainId = function (cb) {
+
+  parameters={};
+  server.serverPost("burrow.getChainId",this.server,parameters,function(error,data){
     if(error) return cb(error);
     return cb(null, data);
   });
@@ -42,9 +44,9 @@ getChainId = function (server,cb) {
  *
  * @param {module:rpc/rpc~methodCallback} callback - The callback function.
  */
-getGenesisHash = function (server,cb) {
-  this.server = server;
-  server.prototype.serverPost("burrow.getGenesisHash",this.server,function(error,data){
+getGenesisHash = function (cb) {
+  parameters={};
+  server.serverPost("burrow.getGenesisHash",this.server,parameters,function(error,data){
     if(error) return cb(error);
     return cb(null, data);
   });
@@ -55,9 +57,9 @@ getGenesisHash = function (server,cb) {
  *
  * @param {module:rpc/rpc~methodCallback} callback - The callback function.
  */
-getLatestBlockHeight = function (server,cb) {
-  this.server = server;
-  server.prototype.serverPost("burrow.getLatestBlockHeight",this.server,function(error,data){
+getLatestBlockHeight = function (cb) {
+  parameters={};
+  server.serverPost("burrow.getLatestBlockHeight",this.server,parameters,function(error,data){
     if(error) return cb(error);
     return cb(null, data);
   });
@@ -68,9 +70,10 @@ getLatestBlockHeight = function (server,cb) {
  *
  * @param {module:rpc/rpc~methodCallback} callback - The callback function.
  */
-getLatestBlock = function (server,cb) {
-  this.server = server
-  server.prototype.serverPost("burrow.getLatestBlock",this.server,function(error,data){
+getLatestBlock = function (cb) {
+
+  parameters={};
+  server.serverPost("burrow.getLatestBlock",this.server,parameters,function(error,data){
     if(error) return cb(error);
     return cb(null, data);
   });
@@ -85,10 +88,9 @@ getLatestBlock = function (server,cb) {
  * @param {module:util~FieldFilter|module:util~FieldFilter[]} [filter] - Filter the search.
  * @param {module:rpc/rpc~methodCallback} callback - The callback function.
  */
-getBlocks = function (filter, cb) {
-  this.server=server
-  this.parameters = {"params":{"filters":[]}}
-  server.prototype.serverPost("burrow.getBlocks",this.server,function(error,data){
+getBlocks = function (cb) {
+  parameters = {"filters":[]}
+  server.serverPost("burrow.getBlocks",this.server,parameters,function(error,data){
     if(error) return cb(error);
     return cb(null, data);
   });
@@ -101,16 +103,11 @@ getBlocks = function (filter, cb) {
  * @param {module:rpc/rpc~methodCallback} callback - The callback function.
  */
 getBlock = function (height, cb) { 
-  this.server=server
-  this.parameters = {"height":height}
-  server.prototype.serverPost("burrow.getBlock",this.server,function(error,data){
+  
+  parameters = {"height":height}
+  server.serverPost("burrow.getBlock",this.server,parameters,function(error,data){
     if(error) return cb(error);
     return cb(null, data);
   });
 }
 }
-
-
-
-
-
