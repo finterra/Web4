@@ -95,7 +95,7 @@
   * @param {module:rpc/rpc~methodCallback} callback - The callback function.
   */
   broadcastTx (tx, cb) {
-  parameters ={ "tx":tx}
+  parameters =tx
   server.serverPost("burrow.broadcastTx",this.server,parameters,function(error,data){
   if(error) return cb(error);
   return cb(null, data);
