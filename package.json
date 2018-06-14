@@ -1,7 +1,7 @@
 {
   "name": "web4",
   "version": "0.0.1",
-  "description": "Finterra Blockchain JavaScript API for communicating with a Hyperledger Burrow server.",
+  "description": "Finterra Blockchain JavaScript API for communicating with Hyperledger Burrow",
   "author": "Nagaraj Manjunath", 
   "license": "MIT",
   "main": "src/app.js",
