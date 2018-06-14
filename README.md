@@ -15,9 +15,9 @@ This is a JavaScript API for communicating with a Hyperledger Burrow server.
     
 If your distribution of Linux has a version older than 6 then you can update it using NodeSource's distribution.
 
-    To Install
-
-    $ git clone the repository
+    To install clone this repository
+    
+    $ git clone https://github.com/finterra/Web4
 
 Usage
 
