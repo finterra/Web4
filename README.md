@@ -19,7 +19,7 @@ If your distribution of Linux has a version older than 6 then you can update it 
     
     $ git clone https://github.com/finterra/Web4
 
-Usage
+**Usage
 
   It has main file account.js, blockchain.js, server.js & transcation.js
   
@@ -28,7 +28,7 @@ Usage
 
 The parameters for createInstance is the server URL as a string. The client-type is chosen based on the URL scheme. 
 
-API Reference
+**API Reference
 
 There are bindings for all the RPC methods. All functions are on the form function(param1, param2, ... , callback), where the callback is a function on the form function(error,data). The data object is the same as you would get by calling the corresponding RPC method directly.
 
@@ -37,7 +37,7 @@ This is the over-all structure of the library.
 NOTE: There will be links to the proper jsdoc and integration with Monax.io. For now, the components point to the actual code files and methods points to the web-API method in question.
 
 
-WEB4 RPC Methods
+**WEB4 RPC Methods
 
 Account RPC
 
@@ -88,8 +88,7 @@ Create instance of Transaction
 
 To get a private key for testing/developing, you can run tendermint gen_account if you have it installed. You can also run tools/pa_generator.js if you have a local node running. It will take the url as command line argument at some point...
 
-
-Calls
+**Calls
 
 Calls provide read-only access to the smart contracts. It is used mostly to get data out of a contract-accounts storage by using the contracts accessor methods, but can be used to call any method that does not change any data in any account. A trivial example would be a contract function that takes two numbers as input, adds them, and then simply returns the sum.
 
