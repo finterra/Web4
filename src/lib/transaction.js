@@ -1,8 +1,9 @@
 
-  var server = require('../src/server');
+  var server = require('./server');
   var errormsg;
   var parameters = [];
   var server = new server();
+
   module.exports = class Transaction {
       
       constructor(url)
@@ -12,15 +13,15 @@
       };
 
   //** Send ammount fromaddress to toAddress */
+
   send(private_key,to_address,amount,cb) { 
 
       parameters =    {"priv_key"   : private_key,
                         "to_address" : to_address,
                         "amount"     : amount}
     server.serverPost("burrow.send",this.server,parameters,function(error,data){
-      if(error) return cb(error);
+      if(error) return cb(error,null);
       return cb(null, data);
-
     });
     };
 
@@ -34,7 +35,6 @@
   server.serverPost("burrow.sendAndHold",this.server,parameters,function(error,data){
     if(error) return cb(error);
     return cb(null, data);
-
   });
   }
 
@@ -95,7 +95,7 @@
   * @param {module:rpc/rpc~methodCallback} callback - The callback function.
   */
   broadcastTx (tx, cb) {
-  parameters =tx
+  parameters = tx;
   server.serverPost("burrow.broadcastTx",this.server,parameters,function(error,data){
   if(error) return cb(error);
   return cb(null, data);

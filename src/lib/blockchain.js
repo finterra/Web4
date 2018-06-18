@@ -1,4 +1,4 @@
-  var server = require('../src/server');
+  var server = require('./server');
   var errormsg;
   var parameters = [];
 
@@ -33,8 +33,9 @@
     getChainId(cb) {
       parameters = {};
       server.serverPost("burrow.getChainId",this.server,parameters,function(error,data){
-        if(error) return cb(error);
-        return cb(null, data);
+        if(error) 
+         cb(error);
+         cb(null, data);
       });
     }
 
@@ -48,7 +49,7 @@
       parameters = {};
       server.serverPost("burrow.getGenesisHash",this.server,parameters,function(error,data){
         if(error) return cb(error);
-        return cb(null, data);
+        return cb(null, data.result.GenesisHash);
       });
     }
 
@@ -114,3 +115,8 @@
       });
     }
   }
+
+
+
+
+
