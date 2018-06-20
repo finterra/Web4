@@ -14,7 +14,7 @@ this.server=server;
  *
  * @param {module:rpc/rpc~methodCallback} callback - The callback function.
  */
-getInfo = function (cb) {
+getInfo (cb) {
     let parameters= {}
     server.serverPost("burrow.getNetworkInfo",this.server,parameters,function(error,data){
       if(error)  cb(error);
@@ -28,7 +28,7 @@ getInfo = function (cb) {
    *
    * @param {module:rpc/rpc~methodCallback} callback - The callback function.
    */
-getClientVersion = function (cb) {
+getClientVersion (cb) {
     let parameters= {}
     server.serverPost("burrow.getClientVersion",this.server,parameters,function(error,data){
       if(error)  cb(error);
@@ -41,7 +41,7 @@ getClientVersion = function (cb) {
    *
    * @param {module:rpc/rpc~methodCallback} callback - The callback function.
    */
-getMoniker = function (cb) {
+getMoniker (cb) {
     let parameters= {}
     server.serverPost("burrow.getMoniker",this.server,parameters,function(error,data){
       if(error)  cb(error);
@@ -55,7 +55,7 @@ getMoniker = function (cb) {
    *
    * @param {module:rpc/rpc~methodCallback} callback - The callback function.
    */
-isListening = function (cb) {
+isListening  (cb) {
     let parameters= {}
     server.serverPost("burrow.isListening",this.server,parameters,function(error,data){
       if(error)  cb(error);
@@ -69,7 +69,7 @@ isListening = function (cb) {
    *
    * @param {module:rpc/rpc~methodCallback} callback - The callback function.
    */
-getListeners = function (cb) {
+getListeners (cb) {
     let parameters= {}
     server.serverPost("burrow.getListeners",this.server,parameters,function(error,data){
       if(error)  cb(error);
@@ -83,7 +83,7 @@ getListeners = function (cb) {
    *
    * @param {module:rpc/rpc~methodCallback} callback - The callback function.
    */
-getPeers = function (cb) {
+getPeers(cb) {
     let parameters= {}
     server.serverPost("burrow.getPeers",this.server,parameters,function(error,data){
       if(error)  cb(error);
@@ -97,7 +97,7 @@ getPeers = function (cb) {
    * @param {string} address - The IP address of the peer. // TODO
    * @param {module:rpc/rpc~methodCallback} callback - The callback function.
    */
-getPeer = function (address, cb) {
+getPeer(address, cb) {
 
     let parameters= {"address":address}
     server.serverPost("burrow.getPeer",this.server,parameters,function(error,data){
