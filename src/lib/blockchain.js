@@ -1,120 +1,176 @@
-  var server = require('./server');
-  var errormsg;
-  var parameters = [];
+    var server       = require('./server');
+    var errormsg;
+    var parameters   = [];
 
-  var server = new server();
-  module.exports = class BlockChain {  
-    constructor(server)
-      {
-          this.server=server;
+    var server       = new server();
+    module.exports   = class BlockChain {  
+      constructor(server)
+        {
+            this.server=server;
+            
+        }
+
+      /**
+       * Get blockchain info.
+       *
+       * @param {module:rpc/rpc~methodCallback} callback - The callback function.
+       */
+
+      getInfo(cb) {
+        if(!this.server){
           
+            errormsg = "method:getInfo error:address is not a proper string."
+            return cb(null,errormsg);
+        }
+        else
+        {
+         let parameters = {}
+          server.serverPost("burrow.getBlockchainInfo",this.server,parameters,function(error,data){
+            if(error) return cb(error);
+            return cb(null, data);
+          });
+        }
+      
       }
 
-    /**
-     * Get blockchain info.
-     *
-     * @param {module:rpc/rpc~methodCallback} callback - The callback function.
-     */
+      /**
+       * Get the chain id.
+       *
+       * @param {module:rpc/rpc~methodCallback} callback - The callback function.
+       */
 
-    getInfo(cb) {
-      parameter = {}
-      server.serverPost("burrow.getBlockchainInfo",this.server,parameter,function(error,data){
-        if(error) return cb(error);
-        return cb(null, data);
-      });
+      getChainId(cb) {
+        if(!this.server){
+          
+          errormsg  = "method:getChainId, error:address is not a proper string."
+          return cb(null,errormsg);
+      }
+      else
+      {
+        parameters  = {};
+        server.serverPost("burrow.getChainId",this.server,parameters,function(error,data){
+          if(error) 
+          cb(error);
+          cb(null, data);
+        });
+      }
+      
+      }
+
+      /**
+       * Get the genesis hash.
+       *
+       * @param {module:rpc/rpc~methodCallback} callback - The callback function.
+       */
+
+      getGenesisHash(cb) {
+
+        if(!this.server){
+          
+          errormsg  = "method:getGenesisHash, error:Invalid argument."
+          return errormsg;
+      }
+      else
+      {
+       let parameters = {};
+        server.serverPost("burrow.getGenesisHash",this.server,parameters,function(error,data){
+          if(error)  cb(error);
+          cb(null, data);
+        });
+      }
+        
+      }
+
+      /**
+       * Get the latest block height.
+       *
+       * @param {module:rpc/rpc~methodCallback} callback - The callback function.
+       */
+
+      getLatestBlockHeight(cb) {
+        if(!this.server){
+          errormsg  = "method:getLatestBlockHeight,  error:Invalid argument."
+          return errormsg;
+      }
+      else
+      {
+        parameters  = {};
+        server.serverPost("burrow.getLatestBlockHeight",this.server,parameters,function(error,data){
+          if(error)  cb(error);
+         cb(null, data);
+        });
+      }
+      
+      }
+
+      /**
+       * Get the latest block.
+       *
+       * @param {module:rpc/rpc~methodCallback} callback - The callback function.
+       */
+
+      getLatestBlock(cb) {
+        if(!this.server){
+          errormsg   = "method:getLatestBlock  error:Invalid argument."
+        return errormsg;
     }
-
-    /**
-     * Get the chain id.
-     *
-     * @param {module:rpc/rpc~methodCallback} callback - The callback function.
-     */
-
-    getChainId(cb) {
-      parameters = {};
-      server.serverPost("burrow.getChainId",this.server,parameters,function(error,data){
-        if(error) 
-         cb(error);
+    else
+    {
+      parameters     = {};
+      server.serverPost("burrow.getLatestBlock",this.server,parameters,function(error,data){
+        if(error)  cb(error);
          cb(null, data);
       });
     }
-
-    /**
-     * Get the genesis hash.
-     *
-     * @param {module:rpc/rpc~methodCallback} callback - The callback function.
-     */
-
-    getGenesisHash(cb) {
-      parameters = {};
-      server.serverPost("burrow.getGenesisHash",this.server,parameters,function(error,data){
-        if(error) return cb(error);
-        return cb(null, data.result.GenesisHash);
-      });
     }
 
-    /**
-     * Get the latest block height.
-     *
-     * @param {module:rpc/rpc~methodCallback} callback - The callback function.
-     */
+      /**
+       * Get the blocks from 'minHeight' to 'maxHeight'.
+       *
+       * TODO out of bounds checks?
+       *
+       * @param {module:util~FieldFilter|module:util~FieldFilter[]} [filter] - Filter the search.
+       * @param {module:rpc/rpc~methodCallback} callback - The callback function.
+       */
 
-    getLatestBlockHeight(cb) {
-      parameters = {};
-      server.serverPost("burrow.getLatestBlockHeight",this.server,parameters,function(error,data){
-        if(error) return cb(error);
-        return cb(null, data);
-      });
-    }
-
-    /**
-     * Get the latest block.
-     *
-     * @param {module:rpc/rpc~methodCallback} callback - The callback function.
-     */
-
-    getLatestBlock(cb) {
-      parameters = {};
-      server.serverPost("burrow.getLatestBlock",this.server,parameters,function(error,data){
-        if(error) return cb(error);
-        return cb(null, data);
-      });
-
-    }
-
-    /**
-     * Get the blocks from 'minHeight' to 'maxHeight'.
-     *
-     * TODO out of bounds checks?
-     *
-     * @param {module:util~FieldFilter|module:util~FieldFilter[]} [filter] - Filter the search.
-     * @param {module:rpc/rpc~methodCallback} callback - The callback function.
-     */
-
-    getBlocks(cb) {
-      parameters = {"filters":[]}
+      getBlocks(cb) {
+        if(!this.server){
+          errormsg   = "method:getBlocks,  error:Invalid argument."
+        return errormsg;
+    }else{
+      parameters     = {"filters":[]}
       server.serverPost("burrow.getBlocks",this.server,parameters,function(error,data){
-        if(error) return cb(error);
-        return cb(null, data);
+        if(error)  cb(error);
+        cb(null, data);
       });
     }
-
-    /**
-     * Get the block with the given block-number, or 'height'.
-     *
-     * @param {number} height - The block height.
-     * @param {module:rpc/rpc~methodCallback} callback - The callback function.
-     */
-
-    getBlock(height, cb) { 
       
-      parameters = {"height":height}
-      server.serverPost("burrow.getBlock",this.server,parameters,function(error,data){
-        if(error) return cb(error);
-        return cb(null, data);
-      });
+      }
+
+      /**
+       * Get the block with the given block-number, or 'height'.
+       *
+       * @param {number} height - The block height.
+       * @param {module:rpc/rpc~methodCallback} callback - The callback function.
+       */
+
+      getBlock(height, cb) { 
+        if(!this.server){
+          errormsg   = "method:getBlock,  error:Invalid height argument."
+        return errormsg;
     }
-  }
+    else
+    {
+      parameters  = {"height":height}
+      server.serverPost("burrow.getBlock",this.server,parameters,function(error,data){
+        if(error)  cb(error);
+        cb(null, data);
+      });
+
+    }
+      
+      }
+    }
 
 
 
