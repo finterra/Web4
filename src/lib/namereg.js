@@ -96,7 +96,7 @@
       
     }
 
-    calculateCost = function (numBlocks, data) {
+    calculateCost (numBlocks, data) {
       return COST_PER_BLOCK * COST_PER_BYTE * (data.length + 32) * numBlocks
     }
 
