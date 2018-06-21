@@ -28,7 +28,7 @@
         this.blockchain = new blockChain(this.serverUrl);
         this.network= new network(this.serverUrl);
         this.consensus= new consensus(this.consensus);
-        this.namereg = new this.namereg(this.namereg);
+        this.namereg = new nameReg (this.serverUrl);
       }
       
     }
