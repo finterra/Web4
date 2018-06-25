@@ -7,10 +7,15 @@
      * @module namereg
      */
 
-    let errorMsg="";
-
+    var server= require('./server');
+    let server = new server();
+    let errorMsg =" ";
+    
+    
     module.exports = class namereg {
-
+       constructor(serverUrl){
+         this.server = serverUrl;
+       }
     /**
      * Get a list of entries.
      *
