@@ -4,10 +4,13 @@
  * @author Nagaraj Manjunath
  * @module events
  */
+var server          = require('./server');
+var errormsg;
+var server          = new server();
 'use strict'
 module.exports = class events{
-    constructor(server){
-        this.server = server;
+    constructor(serverUrl){
+        this.server = serverUrl;
      }
 // The interval for polling.
 //let defaultPollingInterval = 1000
