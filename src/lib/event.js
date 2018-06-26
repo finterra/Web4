@@ -4,14 +4,17 @@
  * @author Nagaraj Manjunath
  * @module events
  */
-var server          = require('./server');
+var requestserver = require('./server');
+let server = new requestserver();
 var errormsg;
-var server          = new server();
+
 'use strict'
-module.exports = class events{
-    constructor(serverUrl){
-        this.server = serverUrl;
+module.exports = class events 
+{
+  constructor(serverUrl) {
+     this.server = serverUrl;
      }
+
 // The interval for polling.
 //let defaultPollingInterval = 1000
 
@@ -78,18 +81,7 @@ subSolidityEvent(address,cb) {
         });
 }
 
-/**
- * Subscribe for log events.
- *
- * @param {string} address - The account to be tracked.
- * @param {module:rpc/rpc~methodCallback} createCallback - Callback for when the subscription has
- * been created. The data returned is a new EventSub object.
- * @param {module:rpc/rpc~methodCallback} eventCallback - The callback function.
- */
-// subLogEvent = function (address, createCallback, eventCallback) {
-//     // this._startEventSub(logEventId(address), createCallback, eventCallback);
-//   createCallback(Error('This functionality is believed to be broken in Burrow.  See https://github.com/hyperledger/burrow/issues/96.'))
-// }
+
 
 /**
  * Subscribe for account intput events.
@@ -296,7 +288,7 @@ _startEventSub (eventId,cb) {
       if(error) return cb(error);
       return cb(null, data);
       });
-}
+ }
 }
 
 
@@ -390,5 +382,3 @@ function forkId () {
 }
 
 //}
-
-
