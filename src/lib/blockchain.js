@@ -1,8 +1,7 @@
-      var server          = require('./server');
-      var errormsg;
-      var parameters      = [];
-      var server          = new server();
+var requestserver = require('./server');
+let server = new requestserver();
 
+var errormsg;  
   /**
      * @file web4.js
      * @fileOverview Factory module for the Blockchain class.
@@ -53,7 +52,7 @@
       }
       else
       {
-      parameters      = {};
+     let parameters      = {};
       server.serverPost("burrow.getChainId",this.server,parameters,function(error,data){
       if(error) 
       cb(error);
@@ -100,7 +99,7 @@
       }
       else
       {
-      parameters      = {};
+     let parameters      = {};
       server.serverPost("burrow.getLatestBlockHeight",this.server,parameters,function(error,data){
       if(error)  cb(error);
       cb(null, data);
@@ -122,7 +121,7 @@
       }
       else
       {
-      parameters        = {};
+     let parameters        = {};
       server.serverPost("burrow.getLatestBlock",this.server,parameters,function(error,data){
       if(error)  cb(error);
       cb(null, data);
@@ -145,7 +144,7 @@
       return errormsg;
       }
       else{
-      parameters        = {"filters":[]}
+      let parameters        = {"filters":[]}
       server.serverPost("burrow.getBlocks",this.server,parameters,function(error,data){
       if(error)  cb(error);
       cb(null, data);
@@ -168,7 +167,7 @@
       }
       else
       {
-      parameters  = {"height":height}
+     let parameters  = {"height":height}
       server.serverPost("burrow.getBlock",this.server,parameters,function(error,data){
       if(error) return cb(error);
       return cb(null, data);
