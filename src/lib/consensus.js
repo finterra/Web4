@@ -6,11 +6,9 @@
        * @module Consensus
        */
 
-      var server          = require('./server');
+      var requestserver = require('./server');
+      let server = new requestserver();
       var errormsg;
-      var parameters      = [];
-      var server          = new server();
-
       module.exports = class Consensus
       {
         constructor(serverUrl)
@@ -56,6 +54,4 @@
       });
       }
       }
-
-
-      }
+     }
