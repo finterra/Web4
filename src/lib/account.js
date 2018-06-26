@@ -1,17 +1,18 @@
-      var server= require('./server');
-      var utils=require('./utils');
-      var errormsg = '';
-      var parameter = [];
-      var server = new server();
-    /**
+
+ /**
      * @file web4.js
      * @fileOverview Factory module for the Account class.
      * @author Nagaraj
      * @module Account
      */
+   
+var requestserver = require('./server');
+let server = new requestserver();
+
+var errormsg = '';
       module.exports = class Account {
 
-      constructor(serverUrl){
+      constructor(serverUrl) {
 
       this.server = serverUrl;
 
