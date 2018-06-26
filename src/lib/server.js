@@ -1,8 +1,13 @@
+      /**
+     * @file server.js
+     * @fileOverview Factory module for the server class.
+     * @author Nagaraj Manjunath
+     * @module server
+     */
+    
     let request = require('request');
+    module.exports = class server {
 
-    module.exports= class server{
-
-    //** Request Get Account Methods */
     serverPost(method_Name,url,params,cb)
     {
     try {
