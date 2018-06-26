@@ -7,9 +7,9 @@
      * @module namereg
      */
 
-    var server= require('./server');
-    let server = new server();
-    let errorMsg =" ";
+    var requestserver = require('./server');
+    let server = new requestserver();
+    let errorMsg = " ";
     
     
     module.exports = class namereg {
