@@ -1,19 +1,23 @@
     'use strict'
 
     //** just create intance of WEB4 and pass url */
+    let Web4Facotry =require('../Web4/src/index'); 
+
+    // export let utils = require('./src/lib/utils/src/index');
+
     module.exports = class Web4 {
-    constructor (web4URL){
-    let Web4Facotry =require('../Web4/src/index');   
+
+    constructor (web4URL){ 
     this.web4 = new Web4Facotry(web4URL);
     this.account = this.web4.account;          
     this.transaction = this.web4.transaction;
     this.blockchain = this.web4.blockchain;
-    this.network=this.web4.network;
+    this.network = this.web4.network;
+    this.utils =this.web4.utils;
     }
 
     //** Send Transcation */
     //** send transcation and  broadcast the transaction, return txhash */
-
     send(privKey, address, amount, cb) {
     try {
     if (!privKey || !address || !amount) throw ("Invalid Arguments");
@@ -70,20 +74,20 @@
     SEND_TX_TYPE,
     {
     inputs:
-        [
-            {
-                address: accountAddress,
-                amount: amount,
-                sequence: sequence + 1,
-            }
-        ],
+    [
+    {
+    address: accountAddress,
+    amount: amount,
+    sequence: sequence + 1,
+    }
+    ],
     outputs:
-        [
-            {
-                address: address,
-                amount: amount
-            }
-        ]
+    [
+    {
+    address: address,
+    amount: amount
+    }
+    ]
     }
     ]
     };
@@ -94,20 +98,20 @@
     {
     inputs:
     [
-        {
-            address: accountAddress,
-            amount: amount,
-            sequence: sequence + 1,
-            signature: [1, signature],
-            public_key: [1, pubKey]
-        }
+    {
+    address: accountAddress,
+    amount: amount,
+    sequence: sequence + 1,
+    signature: [1, signature],
+    public_key: [1, pubKey]
+    }
     ],
     outputs:
     [
-        {
-            address: address,
-            amount: amount
-        }
+    {
+    address: address,
+    amount: amount
+    }
     ]
     }
     ];
@@ -194,11 +198,11 @@
     try {
     this.account.getAccount(address, function (error, data) {                
     if (!error) {
-        returnBalance = data;
-        return resolve(returnBalance);
+    returnBalance = data;
+    return resolve(returnBalance);
     }
     else {
-        resolve(error);
+    resolve(error);
     }                
     });
     }
@@ -216,14 +220,14 @@
     let returnSeq;
     try {
     this.account.getSequence(address, function (error, data) {                
-        if (!error) {
-            console.log(JSON.stringify(data));
-            returnSeq = data;
-            return resolve(returnSeq);
-        }
-        else {
-        return resolve(error);
-        }                
+    if (!error) {
+    console.log(JSON.stringify(data));
+    returnSeq = data;
+    return resolve(returnSeq);
+    }
+    else {
+    return resolve(error);
+    }                
     });
     }
     catch (ex) {
@@ -239,7 +243,6 @@
 
 
     //** Transcation Function */
-
     getUnconfirmedTxs(){
     try{
 
@@ -248,13 +251,13 @@
     try {
 
     this.transaction.getUnconfirmedTxs(function (error, data) {                
-        if (!error) {
-            returnLatestBlock = data;
-            return resolve(returnLatestBlock);
-        }
-        else {
-            return resolve(error);
-        }                
+    if (!error) {
+    returnLatestBlock = data;
+    return resolve(returnLatestBlock);
+    }
+    else {
+    return resolve(error);
+    }                
     });
     }
     catch (ex) {
@@ -280,13 +283,13 @@
     try {
 
     this.blockchain.getInfo(function (error, data) {                
-        if (!error) {
-            returnInfo = data;
-            return resolve(returnInfo);
-        }
-        else {
-            return resolve(error);
-        }                
+    if (!error) {
+    returnInfo = data;
+    return resolve(returnInfo);
+    }
+    else {
+    return resolve(error);
+    }                
     });
     }
     catch (ex) {
@@ -309,14 +312,14 @@
     try {
 
     this.blockchain.getBlock(height,function(error, data) {                
-        if (!error) {
-            getBlockDetails = data;
-            console.log(JSON.stringify(getBlockDetails));
-            return resolve(getBlockDetails);
-        }
-        else {
-            return resolve(error);
-        }                
+    if (!error) {
+    getBlockDetails = data;
+    console.log(JSON.stringify(getBlockDetails));
+    return resolve(getBlockDetails);
+    }
+    else {
+    return resolve(error);
+    }                
     });
     }
     catch (ex) {
@@ -372,18 +375,18 @@
     let returnLatestBlock;
     try {
 
-        this.blockchain.getLatestBlock(function (error, data) {                
-            if (!error) {
-                returnLatestBlock = data;
-                return resolve(returnLatestBlock);
-            }
-            else {
-                return resolve(error);
-            }                
-        });
+    this.blockchain.getLatestBlock(function (error, data) {                
+    if (!error) {
+    returnLatestBlock = data;
+    return resolve(returnLatestBlock);
+    }
+    else {
+    return resolve(error);
+    }                
+    });
     }
     catch (ex) {
-        console.log(ex);
+    console.log(ex);
     }
     })
 
@@ -399,23 +402,23 @@
     {
 
     return new Promise((resolve, reject) => {
-        let returnBlockInfo;
-        try {
-        
-            this.blockchain.getBlock(height,function (error, data) {                
-                if (!error) {
-                    returnBlockInfo = data;
-                    console.log(returnBlockInfo);
-                    return resolve(returnBlockInfo);
-                }
-                else {
-                    return resolve(error);
-                }                
-            });
-        }
-        catch (ex) {
-            console.log(ex);
-        }
+    let returnBlockInfo;
+    try {
+
+    this.blockchain.getBlock(height,function (error, data) {                
+    if (!error) {
+    returnBlockInfo = data;
+    console.log(returnBlockInfo);
+    return resolve(returnBlockInfo);
+    }
+    else {
+    return resolve(error);
+    }                
+    });
+    }
+    catch (ex) {
+    console.log(ex);
+    }
     })
 
     }
@@ -430,23 +433,23 @@
     try
     {              
     return new Promise((resolve, reject) => {
-        let returnClientVersion;
-        try {
-        
-            this.network.getInfo(function (error, data) {                
-                if (!error) {
-                    returnClientVersion = data;
-                    console.log(JSON.stringify(returnClientVersion) );
-                    return resolve(returnClientVersion);
-                }
-                else {
-                    return resolve(error);
-                }                
-            });
-        }
-        catch (ex) {
-            console.log(ex);
-        }
+    let returnClientVersion;
+    try {
+
+    this.network.getInfo(function (error, data) {                
+    if (!error) {
+    returnClientVersion = data;
+    console.log(JSON.stringify(returnClientVersion) );
+    return resolve(returnClientVersion);
+    }
+    else {
+    return resolve(error);
+    }                
+    });
+    }
+    catch (ex) {
+    console.log(ex);
+    }
     })
 
     }
@@ -456,5 +459,3 @@
     }
 
     }
-
-
