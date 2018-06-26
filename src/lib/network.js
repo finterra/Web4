@@ -154,5 +154,3 @@ getPeer(address, cb) {
   }
   
 }
-
-
