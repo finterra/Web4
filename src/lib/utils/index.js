@@ -1,4 +1,3 @@
-
 /**
  * @file utils.js
  * @author Marek Kotewicz <marek@parity.io>
@@ -29,15 +28,15 @@ var _fireError = function (error, emitter, reject, callback) {
     /*jshint maxcomplexity: 10 */
 
     // add data if given
-    if(_.isObject(error) && !(error instanceof Error) &&  error.data) {
-        if(_.isObject(error.data) || _.isArray(error.data)) {
+    if (_.isObject(error) && !(error instanceof Error) && error.data) {
+        if (_.isObject(error.data) || _.isArray(error.data)) {
             error.data = JSON.stringify(error.data, null, 2);
         }
 
-        error = error.message +"\n"+ error.data;
+        error = error.message + "\n" + error.data;
     }
 
-    if(_.isString(error)) {
+    if (_.isString(error)) {
         error = new Error(error);
     }
 
@@ -49,8 +48,8 @@ var _fireError = function (error, emitter, reject, callback) {
         // OR suppress uncatched error if an callback listener is present
         if (emitter &&
             (_.isFunction(emitter.listeners) &&
-            emitter.listeners('error').length) || _.isFunction(callback)) {
-            emitter.catch(function(){});
+                emitter.listeners('error').length) || _.isFunction(callback)) {
+            emitter.catch(function () {});
         }
         // reject later, to be able to return emitter
         setTimeout(function () {
@@ -58,7 +57,7 @@ var _fireError = function (error, emitter, reject, callback) {
         }, 1);
     }
 
-    if(emitter && _.isFunction(emitter.emit)) {
+    if (emitter && _.isFunction(emitter.emit)) {
         // emit later, to be able to return emitter
         setTimeout(function () {
             emitter.emit('error', error);
@@ -81,7 +80,9 @@ var _jsonInterfaceMethodToString = function (json) {
         return json.name;
     }
 
-    var typeName = json.inputs.map(function(i){return i.type; }).join(',');
+    var typeName = json.inputs.map(function (i) {
+        return i.type;
+    }).join(',');
     return json.name + '(' + typeName + ')';
 };
 
@@ -94,16 +95,17 @@ var _jsonInterfaceMethodToString = function (json) {
  * @param {String} hex
  * @returns {String} ascii string representation of hex value
  */
-var hexToAscii = function(hex) {
+var hexToAscii = function (hex) {
     if (!utils.isHexStrict(hex))
         throw new Error('The parameter must be a valid HEX string.');
 
     var str = "";
-    var i = 0, l = hex.length;
+    var i = 0,
+        l = hex.length;
     if (hex.substring(0, 2) === '0x') {
         i = 2;
     }
-    for (; i < l; i+=2) {
+    for (; i < l; i += 2) {
         var code = parseInt(hex.substr(i, 2), 16);
         str += String.fromCharCode(code);
     }
@@ -117,11 +119,11 @@ var hexToAscii = function(hex) {
  * @param {String} str
  * @returns {String} hex representation of input string
  */
-var asciiToHex = function(str) {
-    if(!str)
+var asciiToHex = function (str) {
+    if (!str)
         return "0x00";
     var hex = "";
-    for(var i = 0; i < str.length; i++) {
+    for (var i = 0; i < str.length; i++) {
         var code = str.charCodeAt(i);
         var n = code.toString(16);
         hex += n.length < 2 ? '0' + n : n;
@@ -143,7 +145,7 @@ var asciiToHex = function(str) {
 var getUnitValue = function (unit) {
     unit = unit ? unit.toLowerCase() : 'ether';
     if (!ethjsUnit.unitMap[unit]) {
-        throw new Error('This unit "'+ unit +'" doesn\'t exist, please use the one of the following units' + JSON.stringify(ethjsUnit.unitMap, null, 2));
+        throw new Error('This unit "' + unit + '" doesn\'t exist, please use the one of the following units' + JSON.stringify(ethjsUnit.unitMap, null, 2));
     }
     return unit;
 };
@@ -169,10 +171,10 @@ var getUnitValue = function (unit) {
  * @param {String} unit the unit to convert to, default ether
  * @return {String|Object} When given a BN object it returns one as well, otherwise a number
  */
-var fromWei = function(number, unit) {
+var fromWei = function (number, unit) {
     unit = getUnitValue(unit);
 
-    if(!utils.isBN(number) && !_.isString(number)) {
+    if (!utils.isBN(number) && !_.isString(number)) {
         throw new Error('Please pass numbers as strings or BigNumber objects to avoid precision errors.');
     }
 
@@ -201,10 +203,10 @@ var fromWei = function(number, unit) {
  * @param {String} unit the unit to convert from, default ether
  * @return {String|Object} When given a BN object it returns one as well, otherwise a number
  */
-var toWei = function(number, unit) {
+var toWei = function (number, unit) {
     unit = getUnitValue(unit);
 
-    if(!utils.isBN(number) && !_.isString(number)) {
+    if (!utils.isBN(number) && !_.isString(number)) {
         throw new Error('Please pass numbers as strings or BigNumber objects to avoid precision errors.');
     }
 
@@ -224,16 +226,16 @@ var toWei = function(number, unit) {
 var toChecksumAddress = function (address) {
     if (typeof address === 'undefined') return '';
 
-    if(!/^(0x)?[0-9a-f]{40}$/i.test(address))
-        throw new Error('Given address "'+ address +'" is not a valid  address.');
+    if (!/^(0x)?[0-9a-f]{40}$/i.test(address))
+        throw new Error('Given address "' + address + '" is not a valid  address.');
 
-    address = address.toLowerCase().replace(/^0x/i,'');
-    var addressHash = utils.sha3(address).replace(/^0x/i,'');
+    address = address.toLowerCase().replace(/^0x/i, '');
+    var addressHash = utils.sha3(address).replace(/^0x/i, '');
 
     //  var checksumAddress = '0x';
-    
+
     var checksumAddress = '';
-    for (var i = 0; i < address.length; i++ ) {
+    for (var i = 0; i < address.length; i++) {
         // If ith character is 9 to f then make it uppercase
         if (parseInt(addressHash[i], 16) > 7) {
             // checksumAddress += address[i].toUpperCase();
@@ -306,4 +308,3 @@ module.exports = {
     rightPad: utils.rightPad,
     toTwosComplement: utils.toTwosComplement
 };
-

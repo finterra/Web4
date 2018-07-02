@@ -3,7 +3,7 @@
     //** just create intance of WEB4 and pass url */
     let Web4Facotry = require('../Web4/src/index');
     let TenderKeys = require('tenderkeys');
-     let  tenderkeys = new TenderKeys();
+    let tenderkeys = new TenderKeys();
     // export let utils = require('./src/lib/utils/src/index');
 
     module.exports = class Web4 {
@@ -16,8 +16,8 @@
             this.network = this.web4.network;
             this.utils = this.web4.utils;
         }
-   
-  
+
+
 
 
         //** Transcation Function */
@@ -47,12 +47,12 @@
 
         }
 
-     /**     
-     * @file 
-     * Block Chain Function
-     */
+        /**     
+         * @file 
+         * Block Chain Function
+         */
 
-     //** get the  information of blocks */
+        //** get the  information of blocks */
         getInfo() {
             try {
                 return new Promise((resolve, reject) => {
@@ -61,7 +61,7 @@
                         this.blockchain.getInfo(function (error, data) {
                             if (!error) {
                                 returnInfo = data;
-                                console.log('returnInfo',JSON.stringify(data));
+                                console.log('returnInfo', JSON.stringify(data));
                                 return resolve(returnInfo);
                             } else {
                                 return resolve(error);
@@ -81,9 +81,9 @@
         //{@number} height  */
         getBlock(height) {
             try {
-                      if    (!height){
-                          return
-                      }  
+                if (!height) {
+                    return
+                }
                 return new Promise((resolve, reject) => {
                     let getBlockDetails;
                     try {
@@ -106,7 +106,7 @@
             }
         }
 
-      //** get the current  ChainId   //** 
+        //** get the current  ChainId   //** 
         getChainId() {
             try {
                 return new Promise((resolve, reject) => {
@@ -131,7 +131,7 @@
             }
         }
 
-       //** get the Latest Block   //** 
+        //** get the Latest Block   //** 
         getLatestBlock() {
             try {
                 return new Promise((resolve, reject) => {
@@ -155,8 +155,8 @@
                 console.log(ex);
             }
         }
-  
-       //** get the  blocks details //** 
+
+        //** get the  blocks details //** 
         getBlocks() {
             try {
                 return new Promise((resolve, reject) => {
@@ -180,8 +180,8 @@
             } catch (error) {
                 console.log(ex);
             }
-            
-        
-          }
-      
+
+
+        }
+
     }

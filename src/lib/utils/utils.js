@@ -1,4 +1,3 @@
-
 /**
  * @file utils.js
  * @author Fabian Vogelsteller <fabian@ethereum.org>
@@ -42,11 +41,11 @@ var isBigNumber = function (object) {
  * @param {Number|String|BN} number, string, HEX string or BN
  * @return {BN} BN
  */
-var toBN = function(number){
+var toBN = function (number) {
     try {
         return numberToBN.apply(null, arguments);
-    } catch(e) {
-        throw new Error(e + ' Given value: "'+ number +'"');
+    } catch (e) {
+        throw new Error(e + ' Given value: "' + number + '"');
     }
 };
 
@@ -59,7 +58,7 @@ var toBN = function(number){
  * @return {String}
  */
 var toTwosComplement = function (number) {
-    return '0x'+ toBN(number).toTwos(256).toString(16, 64);
+    return '0x' + toBN(number).toTwos(256).toString(16, 64);
 };
 
 /**
@@ -93,10 +92,10 @@ var isAddress = function (address) {
  */
 var checkAddressChecksum = function (address) {
     // Check each case
-    address = address.replace(/^0x/i,'');
-    var addressHash = sha3(address.toLowerCase()).replace(/^0x/i,'');
+    address = address.replace(/^0x/i, '');
+    var addressHash = sha3(address.toLowerCase()).replace(/^0x/i, '');
 
-    for (var i = 0; i < 40; i++ ) {
+    for (var i = 0; i < 40; i++) {
         // the nth letter should be uppercase if the nth digit of casemap is 1
         if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
             return false;
@@ -116,7 +115,7 @@ var checkAddressChecksum = function (address) {
  */
 var leftPad = function (string, chars, sign) {
     var hasPrefix = /^0x/i.test(string) || typeof string === 'number';
-    string = string.toString(16).replace(/^0x/i,'');
+    string = string.toString(16).replace(/^0x/i, '');
 
     var padding = (chars - string.length + 1 >= 0) ? chars - string.length + 1 : 0;
 
@@ -134,7 +133,7 @@ var leftPad = function (string, chars, sign) {
  */
 var rightPad = function (string, chars, sign) {
     var hasPrefix = /^0x/i.test(string) || typeof string === 'number';
-    string = string.toString(16).replace(/^0x/i,'');
+    string = string.toString(16).replace(/^0x/i, '');
 
     var padding = (chars - string.length + 1 >= 0) ? chars - string.length + 1 : 0;
 
@@ -149,17 +148,17 @@ var rightPad = function (string, chars, sign) {
  * @param {String} str
  * @returns {String} hex representation of input string
  */
-var utf8ToHex = function(str) {
+var utf8ToHex = function (str) {
     str = utf8.encode(str);
     var hex = "";
 
     // remove \u0000 padding from either side
-    str = str.replace(/^(?:\u0000)*/,'');
+    str = str.replace(/^(?:\u0000)*/, '');
     str = str.split("").reverse().join("");
-    str = str.replace(/^(?:\u0000)*/,'');
+    str = str.replace(/^(?:\u0000)*/, '');
     str = str.split("").reverse().join("");
 
-    for(var i = 0; i < str.length; i++) {
+    for (var i = 0; i < str.length; i++) {
         var code = str.charCodeAt(i);
         // if (code !== 0) {
         var n = code.toString(16);
@@ -177,23 +176,23 @@ var utf8ToHex = function(str) {
  * @param {String} hex
  * @returns {String} ascii string representation of hex value
  */
-var hexToUtf8 = function(hex) {
+var hexToUtf8 = function (hex) {
     if (!isHexStrict(hex))
-        throw new Error('The parameter "'+ hex +'" must be a valid HEX string.');
+        throw new Error('The parameter "' + hex + '" must be a valid HEX string.');
 
     var str = "";
     var code = 0;
-    hex = hex.replace(/^0x/i,'');
+    hex = hex.replace(/^0x/i, '');
 
     // remove 00 padding from either side
-    hex = hex.replace(/^(?:00)*/,'');
+    hex = hex.replace(/^(?:00)*/, '');
     hex = hex.split("").reverse().join("");
-    hex = hex.replace(/^(?:00)*/,'');
+    hex = hex.replace(/^(?:00)*/, '');
     hex = hex.split("").reverse().join("");
 
     var l = hex.length;
 
-    for (var i=0; i < l; i+=2) {
+    for (var i = 0; i < l; i += 2) {
         code = parseInt(hex.substr(i, 2), 16);
         // if (code !== 0) {
         str += String.fromCharCode(code);
@@ -246,7 +245,7 @@ var numberToHex = function (value) {
     }
 
     if (!isFinite(value) && !isHexStrict(value)) {
-        throw new Error('Given input "'+value+'" is not a number.');
+        throw new Error('Given input "' + value + '" is not a number.');
     }
 
     var number = toBN(value);
@@ -265,14 +264,14 @@ var numberToHex = function (value) {
  * @param {Array} bytes
  * @return {String} the hex string
  */
-var bytesToHex = function(bytes) {
+var bytesToHex = function (bytes) {
     for (var hex = [], i = 0; i < bytes.length; i++) {
         /* jshint ignore:start */
         hex.push((bytes[i] >>> 4).toString(16));
         hex.push((bytes[i] & 0xF).toString(16));
         /* jshint ignore:end */
     }
-    return '0x'+ hex.join("");
+    return '0x' + hex.join("");
 };
 
 /**
@@ -284,14 +283,14 @@ var bytesToHex = function(bytes) {
  * @param {string} hex
  * @return {Array} the byte array
  */
-var hexToBytes = function(hex) {
+var hexToBytes = function (hex) {
     hex = hex.toString(16);
 
     if (!isHexStrict(hex)) {
-        throw new Error('Given value "'+ hex +'" is not a valid hex string.');
+        throw new Error('Given value "' + hex + '" is not a valid hex string.');
     }
 
-    hex = hex.replace(/^0x/i,'');
+    hex = hex.replace(/^0x/i, '');
 
     for (var bytes = [], c = 0; c < hex.length; c += 2)
         bytes.push(parseInt(hex.substr(c, 2), 16));
@@ -312,7 +311,7 @@ var toHex = function (value, returnType) {
     /*jshint maxcomplexity: false */
 
     if (isAddress(value)) {
-        return returnType ? 'address' : '0x'+ value.toLowerCase().replace(/^0x/i,'');
+        return returnType ? 'address' : '0x' + value.toLowerCase().replace(/^0x/i, '');
     }
 
     if (_.isBoolean(value)) {
@@ -328,7 +327,7 @@ var toHex = function (value, returnType) {
     if (_.isString(value)) {
         if (value.indexOf('-0x') === 0 || value.indexOf('-0X') === 0) {
             return returnType ? 'int256' : numberToHex(value);
-        } else if(value.indexOf('0x') === 0 || value.indexOf('0X') === 0) {
+        } else if (value.indexOf('0x') === 0 || value.indexOf('0X') === 0) {
             return returnType ? 'bytes' : value;
         } else if (!isFinite(value)) {
             return returnType ? 'string' : utf8ToHex(value);
@@ -413,10 +412,10 @@ var sha3 = function (value) {
     if (isHexStrict(value) && /^0x/i.test((value).toString())) {
         value = hexToBytes(value);
     }
-    console.log("value",value);
+    console.log("value", value);
     var returnValue = Hash.keccak256(value); // jshint ignore:line
 
-    if(returnValue === SHA3_NULL_S) {
+    if (returnValue === SHA3_NULL_S) {
         return null;
     } else {
         return returnValue;
