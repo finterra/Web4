@@ -7,7 +7,6 @@ This is a JavaScript API for communicating with Finterra Blockchain.
     Installation Prerequisites
     
     Git
-    Monax version 0.16
     Node.js version 6 or higher
     You can check the installed version of Node.js with the command:
 
