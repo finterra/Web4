@@ -1,8 +1,8 @@
 # Web4
 
-Finterra Blockchain's advanced web4.
+Finterra Blockchain's web4.
 
-This is a JavaScript API for communicating with a Hyperledger Burrow server.
+This is a JavaScript API for communicating with Finterra Blockchain.
 
     Installation Prerequisites
     
