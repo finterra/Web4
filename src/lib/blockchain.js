@@ -166,4 +166,33 @@ module.exports = class BlockChain {
     }
 
   }
+
+    /**
+   * Get the block with the given block-number, or 'height'.
+   *
+   * @param {number} tx - the tx hash.
+   * @param {number} prove - the prove either true or false.
+   * @param {module:rpc/rpc~methodCallback} callback - The callback function.
+   */
+
+  getTx(tx,prove, cb) {
+    var txhash= '0x';
+    if (!this.server && !tx) {
+      errormsg = "method:gettx,  error:Invalid tx or prove argument."
+      return cb(errormsg);
+    } else {
+      tx = txhash + tx;
+      console.log(tx);
+      let parameters = {
+        "hash": tx,
+        "prove":prove,
+      }
+      server.serverPost("burrow.gettx", this.server, parameters, function (error, data) {
+        if (error) return cb(error);
+        return cb(null, data);
+      });
+
+    }
+
+  }
 }

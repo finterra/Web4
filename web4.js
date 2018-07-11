@@ -17,9 +17,6 @@
             this.utils = this.web4.utils;
         }
 
-
-
-
         //** Transcation Function */
         getUnconfirmedTxs() {
             try {
@@ -91,6 +88,7 @@
                         this.blockchain.getBlock(height, function (error, data) {
                             if (!error) {
                                 getBlockDetails = data;
+                                console.log(JSON.stringify (data));
                                 return resolve(getBlockDetails);
                             } else {
                                 return resolve(error);
@@ -163,7 +161,7 @@
                     let returnBlocksInfo;
                     try {
 
-                        this.network.getBlocks(function (error, data) {
+                        this.blockchain.getBlocks(function (error, data) {
                             if (!error) {
                                 returnBlocksInfo = data;
                                 console.log(JSON.stringify(returnBlocksInfo));
@@ -184,4 +182,31 @@
 
         }
 
+        //** get the  Tx hash details //** 
+        getTx(tx,prove) {
+            try {
+                return new Promise((resolve, reject) => {
+                    let returnBlocksInfo;
+                    try {
+
+                        this.blockchain.getTx(tx,prove,function (error, data) {
+                            if (!error) {
+                                returnBlocksInfo = data;
+                                console.log(JSON.stringify(returnBlocksInfo));
+                                return resolve(returnBlocksInfo);
+                            } else {
+                                return resolve(error);
+                            }
+                        });
+                    } catch (ex) {
+                        reject(ex);
+                    }
+                })
+
+            } catch (error) {
+                console.log(ex);
+            }
+
+
+        }
     }

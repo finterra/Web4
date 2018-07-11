@@ -1,0 +1,14 @@
+syntax = 'proto3';
+
+service Blockchain {
+
+   rpc GetInfo(BlocksDetails) returns (blockhainfo);
+   rpc GetChainId(ChainInfo) returns (blockhainfo);
+   rpc GetGenesisHash(HashInfo) returns (blockhainfo);
+   rpc GetLatestBlockHeight(LatestBlockHeight) returns (blockhainfo);  
+   rpc GetLatestBlock(LatestBlock) returns (blockhainfo);
+   rpc GetBlocks(BlocksDetails) returns (blockhainfo);
+   rpc GetBlock(BlockInfo) returns (blockhainfo);
+ 
+}
+
