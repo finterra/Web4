@@ -1,4 +1,4 @@
-# Web4
+# Web4GRPC
 
 Finterra Blockchain's web4 GRPC.
 
