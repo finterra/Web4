@@ -3,13 +3,18 @@ let WEB4 = require('../web4');
 let url = "localhost:10997";
 // let url = "0.0.0.0:50051";
 
-/* Instance of WEBGRPC8*/
+/* Instance of WEB4GRPC*/
 var gRPC = new webGRPC(url);
 
-/**  */
+/**   */
 var transactions = gRPC.transactions;
 var events = gRPC.events;
 var keys = gRPC.keys;
+var accounts = gRPC.accounts;
+var network = gRPC.network;
+var nameReg = gRPC.NameReg;
+var blockchain = gRPC.blockchain;
+
 
 
 
@@ -43,6 +48,16 @@ var sendParam = {
     toAddress: toAddr,
     amount: 100
 }
+var addressParam ={
+    address:fromaddress
+}
+
+accounts.GetAccount(addressParam,function(error,data){
+     if(error)
+     {console.log(error)}
+     else{console.log(data)}
+
+})
 
 // /** Send method
 //  *   sendParam parameter 
