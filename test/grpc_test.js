@@ -1,7 +1,7 @@
 var webGRPC = require('../src/grpc/index');
 let WEB4 = require('../web4');
-//let url = "localhost:10997";
-let url = "0.0.0.0:50051";
+let url = "localhost:10997";
+// let url = "0.0.0.0:50051";
 
 /* Instance of WEBGRPC8*/
 var gRPC = new webGRPC(url);
@@ -11,7 +11,7 @@ var transactions = gRPC.transactions;
 var events = gRPC.events;
 var keys = gRPC.keys;
 
-console.log(keys);
+
 
 /**
  * Account for test case
@@ -29,8 +29,9 @@ let amount = 10;
 
 var inputAccount = {
     privateKey: privateKey,
-    address: address
+    address: fromaddress
 }
+
 
 /********************* Transcation function start here ******************* */
 
@@ -43,13 +44,13 @@ var sendParam = {
     amount: 100
 }
 
-/** Send method
- *   sendParam parameter 
- *   @inputAccount {privateKey, address} requires 'Private Key' and 'Address'
- *   @toAddress requires 'To Address'
- *   @value requires Amount number 
-**/
-transaction.Send(sendParam, function (error, data) {
+// /** Send method
+//  *   sendParam parameter 
+//  *   @inputAccount {privateKey, address} requires 'Private Key' and 'Address'
+//  *   @toAddress requires 'To Address'
+//  *   @value requires Amount number 
+// **/
+transactions.Send(sendParam, function (error, data) {
     console.log("Response: ", data);
     if (error) {
         console.log(error)
@@ -58,13 +59,13 @@ transaction.Send(sendParam, function (error, data) {
     }
 });
 
-/** SendAndHold method
- *   sendParam parameter 
- *   @inputAccount {privateKey, address} requires 'Private Key' and 'Address'
- *   @toAddress requires 'To Address'
- *   @value requires Amount number 
-**/
-transaction.SendAndHold(sendParam,function(error,data){
+// /** SendAndHold method
+//  *   sendParam parameter 
+//  *   @inputAccount {privateKey, address} requires 'Private Key' and 'Address'
+//  *   @toAddress requires 'To Address'
+//  *   @value requires Amount number 
+// **/
+transactions.SendAndHold(sendParam,function(error,data){
     if (error) {
         console.log("error",error)
     } else {
@@ -72,16 +73,24 @@ transaction.SendAndHold(sendParam,function(error,data){
     }
 })
 
-/** Transact method
- *   TransactParam parameter 
- *   @inputAccount {privateKey, address} requires 'Private Key' and 'Address'
- *   @address requires 'The address of the contract to call, or omitted if creating a new contract'
- *   @value requires Amount
- *   @data EVM bytecode payload to deliver
- *   @gasLimit The maximum gas to provide to the EVM when running any code - provided in order to bound the computation time
- *   @fee   Fee to offer validators for processing transaction
-**/
- transaction.Transact(TransactParam,function(error,data){
+// /** Transact method
+//  *   TransactParam parameter 
+//  *   @inputAccount {privateKey, address} requires 'Private Key' and 'Address'
+//  *   @address requires 'The address of the contract to call, or omitted if creating a new contract'
+//  *   @value requires Amount
+//  *   @data EVM bytecode payload to deliver
+//  *   @gasLimit The maximum gas to provide to the EVM when running any code - provided in order to bound the computation time
+//  *   @fee   Fee to offer validators for processing transaction
+// **/
+       var TransactParam={
+           inputAccount:inputAccount,
+           address:toAddr,
+           value:10,
+           data:'',
+           gasLimit:21000,
+           fee:2000000,
+       }
+transactions.Transact(TransactParam,function(error,data){
     if (error) {
         console.log("error",error)
     } else {
@@ -90,16 +99,16 @@ transaction.SendAndHold(sendParam,function(error,data){
 
  })
 
-/** Transact method
- *   TransactParam parameter 
- *   @inputAccount {privateKey, address} requires 'Private Key' and 'Address'
- *   @address requires 'The address of the contract to call, or omitted if creating a new contract'
- *   @value requires Amount
- *   @data EVM bytecode payload to deliver
- *   @gasLimit The maximum gas to provide to the EVM when running any code - provided in order to bound the computation time
- *   @fee   Fee to offer validators for processing transaction
-**/
- transaction.TransactAndHold(TransactParam,function(error,data){
+// /** Transact method
+//  *   TransactParam parameter 
+//  *   @inputAccount {privateKey, address} requires 'Private Key' and 'Address'
+//  *   @address requires 'The address of the contract to call, or omitted if creating a new contract'
+//  *   @value requires Amount
+//  *   @data EVM bytecode payload to deliver
+//  *   @gasLimit The maximum gas to provide to the EVM when running any code - provided in order to bound the computation time
+//  *   @fee   Fee to offer validators for processing transaction
+// **/
+transactions.TransactAndHold(TransactParam,function(error,data){
     if (error) {
         console.log("error",error)
     } else {
@@ -108,12 +117,18 @@ transaction.SendAndHold(sendParam,function(error,data){
 
  })
 
-//** Call method
-/* {@fromAccount} takes from address
-/* {@toAddress} takes toaddress 
-/* {@data}  EVM bytecode payload to deliver
-**/
- transaction.Call(CallParam,function(error, data){
+// //** Call method
+// /* {@from} takes from address
+// /* {@address} takes toaddress 
+// /* {@data}  EVM bytecode payload to deliver
+// **/
+   var CallParam ={
+        from:fromaddress,
+        address:toAddr,
+        data:'',
+
+   }
+transactions.Call(CallParam,function(error, data){
     if (error) {
         console.log("error",error)
     } else {
@@ -122,13 +137,18 @@ transaction.SendAndHold(sendParam,function(error,data){
 
  })
 
-/** CallCode method
-/* CallCodeParam Parameter
-/* {@fromAccount} takes from address
-/* {@toAddress} takes toaddress 
-/* {@data}  EVM bytecode payload to deliver
-**/
- transaction.CallCode(CallCodeParam,function(error,data){
+// /** CallCode method
+// /* CallCodeParam Parameter
+// /* {@from} takes from address
+// /* {@address} takes toaddress 
+// /* {@data}  EVM bytecode payload to deliver
+// **/
+  var CallCodeParam={
+         from:fromaddress,
+         code:'',
+         data:'',
+  }
+transactions.CallCode(CallCodeParam,function(error,data){
     if (error) {
         console.log("error",error)
     } else {
@@ -137,12 +157,16 @@ transaction.SendAndHold(sendParam,function(error,data){
 
  })
 
-//** SignTx method
-/* SignTxParam Parameter
-/* {@tx}
-/* {@privateAccounts} takes to Private key 
-**/
- transaction.SignTx(SignTxParam,function(error,data){
+// //** SignTx method
+// /* SignTxParam Parameter
+// /* {@tx}  bytes
+// /* {@privateAccounts} takes to Private key 
+// **/
+     var SignTxParam={
+        tx:'',
+        privateAccounts:privateKey,
+      }
+transactions.SignTx(SignTxParam,function(error,data){
     if (error) {
         console.log("error",error)
     } else {
@@ -152,11 +176,15 @@ transaction.SendAndHold(sendParam,function(error,data){
  })
 
 
-//** BroadcastTx method
-/* TxParam parameters
-/* {@tx} 
-**/
- transaction.BroadcastTx(TxParam,function(error, data){
+// //** BroadcastTx method
+// /* TxParam parameters
+// /* {@tx}   bytes
+// **/
+  var TxParam={
+      tx:''  //bytes
+  }
+ 
+transactions.BroadcastTx(TxParam,function(error, data){
     if (error) {
         console.log("error",error)
     } else {
@@ -185,10 +213,10 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@subId}  string
 **/
 
-/* let SubIdParam={
-/*  subId:"1"  
-/* }
-*/
+var SubIdParam={
+    subId: '1'
+}
+
  events.EventPoll(SubIdParam,function(error, data){
     if (error) {
         console.log("error",error)
@@ -202,6 +230,10 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* EventIdParam parameters
 /* {@eventId}  string
 **/
+
+var EventIdParam={
+    eventId: '1'
+}
  events.EventSubscribe(EventIdParam,function(error, data){
     if (error) {
         console.log("error",error)
@@ -214,6 +246,10 @@ transaction.SendAndHold(sendParam,function(error,data){
  /* SubIdParam parameters
 /* {@subId}  string
 **/
+var SubIdParam={
+    subId: '1'
+}
+
  events.EventUnsubscribe(SubIdParam,function(error, data){
     if (error) {
         console.log("error",error)
@@ -234,6 +270,12 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@curvetype}  string
 /* {@keyname}   string
 **/
+var GenRequest = {
+    passphrase:'',
+    curvetype:'',
+    keyname:''
+}
+
  keys.GenerateKey(GenRequest,function(error,data){
     if (error) {
         console.log("error",error)
@@ -248,6 +290,11 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@keyname}  string
 /* {@address}  string
 **/
+  var AddNameRequest={
+    keyname:'',
+    address: '',
+  } 
+
  keys.AddName(AddNameRequest,function(error,data){
     if (error) {
         console.log("error",error)
@@ -263,6 +310,11 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@curvetype}  string
 /* {@keybytes}  bytes
 **/
+var ImportRequest ={
+    passphrase:' ',
+    name:'',
+    curvetype:'',
+}
  keys.Import(ImportRequest,function(error,data){
     if (error) {
         console.log("error",error)
@@ -277,6 +329,12 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@name}  string
 /* {@address}  string
 **/
+
+var ExportRequest ={
+    passphrase:' ',
+    name:'',
+    curvetype:'',
+}
  keys.Export(ExportRequest,function(error,data){
     if (error) {
         console.log("error",error)
@@ -290,6 +348,10 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@passphrase}  string
 /* {@JSON}  string
 **/
+var ImportJSONRequest = {
+    passphrase:'',
+    JSON: '' 
+}
  keys.ImportJSON(ImportJSONRequest,function(error,data){
     if (error) {
         console.log("error",error)
@@ -302,6 +364,9 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* ListRequest parameters
 
 **/
+var ListRequest ={
+
+}
  keys.List(ListRequest,function(error,data){
     if (error) {
         console.log("error",error)
@@ -315,6 +380,11 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@address}  string
 /* {@name}  string
 **/
+  var PubRequest = {
+    address:fromaddress,
+    name:'',
+  } 
+ 
  keys.PublicKey(PubRequest,function(error,data){
 
     if (error) {
@@ -328,6 +398,10 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* RemoveNameRequest parameters
 /* {@keyname}  string
 **/
+  var RemoveNameRequest = {
+    keyname :'',
+  }
+
  keys.RemoveName(RemoveNameRequest,function(error,data){
     if (error) {
         console.log("error",error)
@@ -344,6 +418,8 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@name}  string
 /* {@message}  bytes
 **/
+  
+
  keys.Sign(SignRequest,function(error,data){
     if (error) {
         console.log("error",error)
@@ -360,6 +436,14 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@message}  bytes
 /* {@signature}  bytes
 **/
+
+var VerifyRequest = {
+    curvetype:'',
+    pub : '',
+    message: '',
+    signature : '',
+}
+
  keys.Verify(VerifyRequest,function(error,data){
     if (error) {
         console.log("error",error)
@@ -373,6 +457,11 @@ transaction.SendAndHold(sendParam,function(error,data){
 /* {@hashtype}  string
 /* {@message}  bytes
 **/
+
+var HashRequest = { 
+    hashtype:'',
+    message : '',
+}
 keys.Hash(HashRequest,function(error,data){
     if (error) {
         console.log("error",error)
