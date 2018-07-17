@@ -50,4 +50,24 @@ module.exports = class Consensus {
       });
     }
   }
+
+
+  getlistValidators(cb) {
+    if (!this.server) {
+      errormsg = "method:getlistValidators error: server url  is not defined."
+      cb(null, errormsg);
+    } else {
+      let parameters = {}
+      server.serverPost("burrow.listValidators", this.server, parameters, function (error, data) {
+        if (error) cb(error);
+        cb(null, data);
+      });
+    }
+  }
 }
+
+
+
+
+
+

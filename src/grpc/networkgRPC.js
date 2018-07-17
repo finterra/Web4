@@ -66,7 +66,7 @@ module.exports = class NetworkgRPC {
    *   @empty , nil 
    */
   GetPeers(empty, callback) {
-    this.client.GetPeers(empty, function (err, response) {
+    this.client.getPeers(empty, function (err, response) {
       if (err) {
         callback(err)
       } else {

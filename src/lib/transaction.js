@@ -230,5 +230,63 @@ module.exports = class Transaction {
             });
       };
 
+         /**
+       * BOND Method Name
+       * with the given input.
+       *
+       * @param {string} [inputAccount] requies {@privteKey & @address} - The address from which the call was made. The address is settable because this is a read-only operation.
+       * @param {string} toaddress - The toaddress.
+       * @param {int} amount
+       *  @param {int} fee
+       *  @param {string} publickey
+       * @param {module:rpc/rpc~methodCallback} callback - The callback function.
+       */
+      BOND(inputAccount,toaddress,amount,fee,publickey){
+            if (!this.server || !inputAccount.PrivateKey || !inputAccount.Address || toaddress || amount ||fee || publickey) {
+                  errorMsg = "Method:bond, error: Invalid arguments"
+                  return errorMsg}
+            let parameters = {
+                  "inputAccount":inputAccount,
+                  "toAddress": toaddress,
+                  "amount": amount,
+                  "fee" :fee,
+                 "publicKey" :publickey
+
+            }
+            server.serverPost("burrow.bond", this.server, parameters, function (error, data) {
+                  if (error) cb(error);
+                  cb(null, data);
+
+            });
+      };   
+     
+       /**
+       * UNBOND Method Name
+       * with the given input.
+       *
+       *  @param {string} [inputAccount] requies {@privteKey & @address} - The address from which the call was made. The address is settable because this is a read-only operation.
+       *  @param {string} toaddress - The toaddress.
+       *  @param {int} amount
+       *  @param {int} fee
+       *  @param {string} publickey
+       *  @param {module:rpc/rpc~methodCallback} callback - The callback function.
+       */
+      UNBOND(inputAccount,toaddress,amount,fee,publickey){
+            if (!this.server || !inputAccount.PrivateKey || !inputAccount.Address || toaddress || amount ||fee || publickey) {
+                  errorMsg = "Method:unbond, error: Invalid arguments"
+                  return errorMsg
+            }
+            let parameters = {
+                  "inputAccount":inputAccount,
+                  "toAddress": toaddress,
+                  "amount": amount,
+                  "fee" :fee,
+                  "publicKey" :publickey}
+            server.serverPost("burrow.unbond", this.server, parameters, function (error, data) {
+                  if (error) cb(error);
+                  cb(null, data);
+
+            });
+      }; 
       
 }

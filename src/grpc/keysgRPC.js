@@ -156,6 +156,7 @@ module.exports = class KeysgRPC {
 **/
   List(list,callback) {
     this.client.list({}, function (err, response) {
+      console.log(response);
       if (err) {
         callback(err)
       } else {

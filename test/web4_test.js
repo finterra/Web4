@@ -4,7 +4,7 @@ const fs = require('fs');
 const grpc = require('grpc');
 //let url = "localhost:10997"
 
-let url = "localhost:50051"
+//let url = "localhost:50051"
 
 let value = 10;
 let fromAccount = {
@@ -23,9 +23,9 @@ let privKey2 = "85BB7D2E1856C281190FA174E7478F596BAFF265733C7AE6BE87E0DE10E57F33
 
 
 
-const PROTO_PATH = 'src/pb/transactor.proto';
-const serviceDef = grpc.load(PROTO_PATH);
-var client = new serviceDef.Transactor(url,grpc.credentials.createInsecure());
+// const PROTO_PATH = 'src/pb/transactor.proto';
+// const serviceDef = grpc.load(PROTO_PATH);
+// var client = new serviceDef.Transactor(url,grpc.credentials.createInsecure());
 
 
 /** Send Transcation 
@@ -33,40 +33,40 @@ var client = new serviceDef.Transactor(url,grpc.credentials.createInsecure());
  * {@toAddress}
  * {@amount}  
 */
-client.send({inputAccount : fromAccount,toAddress : toAddr, amount : value}, function(err, response) {
-  if(err)
-  {console.log(err)}
-  else{
-    console.log('Greeting:', response);
-  }
+// client.send({inputAccount : fromAccount,toAddress : toAddr, amount : value}, function(err, response) {
+//   if(err)
+//   {console.log(err)}
+//   else{
+//     console.log('Greeting:', response);
+//   }
   
-});
+// });
 
 
 
-// let url = "http://192.168.0.10:1310/rpc";
-//let url = "http://54.95.41.253:1337/rpc";
+ let url = "http://192.168.0.10:1310/rpc";
+let url = "http://54.95.41.253:1337/rpc";
 
 
 
 
 
 /** Web 4 testing */
-// let WEB4 = new web4(url);
+let WEB4 = new web4(url);
 
 // let transactionHash = ""
 // let prove = "";
 // let height = 111087
 
-// WEB4.getInfo(function(error,data){
-//    if (error){
-//      console.log(error);
-//    }
-//    else{
-//      console.log(data);
-//    }
+WEB4.getInfo(function(error,data){
+   if (error){
+     console.log(error);
+   }
+   else{
+     console.log(data);
+   }
 
-// })
+})
 
 // WEB4.getBlock(height,function(error,data){
 //     if (error){

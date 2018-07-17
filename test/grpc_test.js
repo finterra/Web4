@@ -1,12 +1,12 @@
 var webGRPC = require('../src/grpc/index');
 let WEB4 = require('../web4');
-let url = "localhost:10997";
+ let url = "tcp:localhost:10997";
 // let url = "0.0.0.0:50051";
 
-/* Instance of WEB4GRPC*/
+// // /* Instance of WEB4GRPC*/
 var gRPC = new webGRPC(url);
 
-/**   */
+// /**   */
 var transactions = gRPC.transactions;
 var events = gRPC.events;
 var keys = gRPC.keys;
@@ -38,7 +38,7 @@ var inputAccount = {
 }
 
 
-/********************* Transcation function start here ******************* */
+// /********************* Transcation function start here ******************* */
 
 /**
  * Input for send and sendAndHold GRPC function
@@ -52,12 +52,12 @@ var addressParam ={
     address:fromaddress
 }
 
-accounts.GetAccount(addressParam,function(error,data){
-     if(error)
-     {console.log(error)}
-     else{console.log(data)}
+// accounts.GetAccount(addressParam,function(error,data){
+//      if(error)
+//      {console.log(error)}
+//      else{console.log(data)}
 
-})
+// })
 
 // /** Send method
 //  *   sendParam parameter 
@@ -65,6 +65,7 @@ accounts.GetAccount(addressParam,function(error,data){
 //  *   @toAddress requires 'To Address'
 //  *   @value requires Amount number 
 // **/
+  
 transactions.Send(sendParam, function (error, data) {
     console.log("Response: ", data);
     if (error) {
@@ -73,6 +74,9 @@ transactions.Send(sendParam, function (error, data) {
         console.log(data)
     }
 });
+
+
+
 
 // /** SendAndHold method
 //  *   sendParam parameter 

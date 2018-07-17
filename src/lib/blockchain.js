@@ -175,24 +175,43 @@ module.exports = class BlockChain {
    * @param {module:rpc/rpc~methodCallback} callback - The callback function.
    */
 
-  getTx(tx,prove, cb) {
-    var txhash= '0x';
-    if (!this.server && !tx) {
-      errormsg = "method:gettx,  error:Invalid tx or prove argument."
+  // getTx(tx,prove, cb) {
+  //   var txhash= '0x';
+  //   if (!this.server && !tx) {
+  //     errormsg = "method:gettx,  error:Invalid tx or prove argument."
+  //     return cb(errormsg);
+  //   } else {
+  //     tx = txhash + tx;
+  //     console.log(tx);
+  //     let parameters = {
+  //       "height": tx,
+  //       "prove":prove,
+  //     }
+  //     server.serverPost("burrow.gettx", this.server, parameters, function (error, data) {
+  //       if (error) return cb(error);
+  //       return cb(null, data);
+  //     });
+
+  //   }
+
+  // }
+
+  
+  getBlockTransactions(height){
+    if (!this.server && !height) {
+      errormsg = "method:getBlockTransactions,  error:Invalid tx or prove argument."
       return cb(errormsg);
     } else {
-      tx = txhash + tx;
-      console.log(tx);
       let parameters = {
-        "hash": tx,
-        "prove":prove,
+        "height": height,
       }
-      server.serverPost("burrow.gettx", this.server, parameters, function (error, data) {
+      server.serverPost("burrow.getBlockTransactions", this.server, parameters, function (error, data) {
         if (error) return cb(error);
         return cb(null, data);
       });
 
     }
+
 
   }
 }
