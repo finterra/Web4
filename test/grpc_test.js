@@ -1,10 +1,13 @@
 var webGRPC = require('../src/grpc/index');
 let WEB4 = require('../web4');
- let url = "tcp:localhost:10997";
+ let url = "localhost:10997";
 // let url = "0.0.0.0:50051";
+
+console.log(WEB4);
 
 // // /* Instance of WEB4GRPC*/
 var gRPC = new webGRPC(url);
+
 
 // /**   */
 var transactions = gRPC.transactions;
@@ -66,6 +69,8 @@ var addressParam ={
 //  *   @value requires Amount number 
 // **/
   
+
+
 transactions.Send(sendParam, function (error, data) {
     console.log("Response: ", data);
     if (error) {

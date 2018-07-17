@@ -13,6 +13,8 @@
     var network = require('./lib/network');
     var consensus = require('./lib/consensus');
     var nameReg = require('./lib/namereg');
+    var utils= require('./lib/utils/index');
+
     /**
      * @file web4.js
      * create instance of account
@@ -28,6 +30,7 @@
         this.network = new network(this.serverUrl);
         this.consensus = new consensus(this.consensus);
         this.namereg = new nameReg(this.serverUrl);
+        this.utils = utils;
       }
 
     }
