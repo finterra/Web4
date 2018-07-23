@@ -2,7 +2,7 @@ let Client = require('./clientGen');
 
 module.exports = class TransactgRPC {
   constructor(url) {
-    this.client = Client.getClient(url, "Transactor",)
+    this.client = Client.getClient(url, "Transactor",'transcator')
   }
   
 /** Send method

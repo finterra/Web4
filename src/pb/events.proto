@@ -1,5 +1,7 @@
 syntax = 'proto3';
 
+package events;
+
 // Event Service Definition
 service Events {
     rpc EventPoll (SubIdParam) returns (PollResponse);

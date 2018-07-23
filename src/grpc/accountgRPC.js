@@ -2,7 +2,7 @@ let Client = require('./clientGen');
 
 module.exports = class AccountgRPC {
     constructor(url) {
-      this.client = Client.getClient(url, "Accounts");
+      this.client = Client.getClient(url, "Accounts",'accounts');
     }
 
 /* GenPrivAccount method 

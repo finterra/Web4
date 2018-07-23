@@ -2,7 +2,7 @@ let Client = require('./clientGen');
 
 module.exports = class NameReggRPC {
   constructor(url) {
-    this.client = Client.getClient(url, "NameReg")
+    this.client = Client.getClient(url, "NameReg",'namereg')
   }
 
 

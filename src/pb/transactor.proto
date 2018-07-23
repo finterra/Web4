@@ -1,5 +1,7 @@
 syntax = 'proto3';
 
+package transcator;
+
 // Params
 message CallParam {
     bytes from = 1;

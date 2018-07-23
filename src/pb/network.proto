@@ -1,5 +1,7 @@
 syntax = 'proto3';
 
+package network;
+
 // #BEGIN(network)
 // Network Service Definition
 service Network {

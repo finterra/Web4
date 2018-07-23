@@ -2,7 +2,7 @@ let Client = require('./clientGen');
 
 module.exports = class BlockchaingRPC {
     constructor(url) {
-        this.client = Client.getClient(url, "Blockchain");
+        this.client = Client.getClient(url, "Blockchain",'blockchain');
         
     }
 

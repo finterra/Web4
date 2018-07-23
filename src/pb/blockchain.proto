@@ -1,5 +1,7 @@
 syntax = 'proto3';
 
+package blockchain;
+
 // #BEGIN(blockchain)
 // Blockchain Service Definition
 service Blockchain {

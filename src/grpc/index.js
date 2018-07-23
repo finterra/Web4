@@ -11,12 +11,12 @@ var keys=require('./keysgRPC');
 module.exports = class WEB4GRPC {
     constructor(url) {
         this.serverUrl = url;
-        // this.accounts = new accounts(this.serverUrl);
-        // this.blockchain = new blockchain(this.serverUrl);
-        // this.network = new network(this.serverUrl);
-        // this.nameReg = new nameReg(this.serverUrl);
-        // this.transactions = new transaction(this.serverUrl);
-        // this.events = new events(this.serverUrl);
+        this.accounts = new accounts(this.serverUrl);
+        this.blockchain = new blockchain(this.serverUrl);
+        this.network = new network(this.serverUrl);
+        this.nameReg = new nameReg(this.serverUrl);
+        this.transactions = new transaction(this.serverUrl);
+        this.events = new events(this.serverUrl);
         this.keys = new keys(this.serverUrl);
     }
 

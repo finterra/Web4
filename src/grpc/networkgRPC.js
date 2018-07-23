@@ -2,7 +2,7 @@ let Client = require('./clientGen');
 
 module.exports = class NetworkgRPC {
   constructor(url) {
-    this.client = Client.getClient(url, "Network")
+    this.client = Client.getClient(url, "Network",'network')
   }
 
   /* GetClientVersion method

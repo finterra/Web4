@@ -2,7 +2,7 @@ let Client = require('./clientGen');
 
 module.exports = class Events { 
   constructor (url){
-   this.client = Client.getClient(url, "Events")
+   this.client = Client.getClient(url, "Events", 'events')
   }
 
   //** EventPoll method
