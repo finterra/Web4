@@ -2,7 +2,8 @@ let Client = require('./clientGen');
 
 module.exports = class KeysgRPC {
   constructor(url) {
-    this.client = Client.getClient(url, "Keys")
+    this.client = Client.getClient(url, "Keys",'keys');
+    console.log(this.client);
    }
 
 //** GenerateKey method
@@ -35,7 +36,7 @@ module.exports = class KeysgRPC {
       }
     })
   }
-
+  
 
   //** Sign method
 /* SignRequest parameters
@@ -155,8 +156,9 @@ module.exports = class KeysgRPC {
 /* ListRequest parameters
 **/
   List(list,callback) {
-    this.client.list({}, function (err, response) {
-      console.log(response);
+
+   this.client.list({}, function (err, response) {
+   
       if (err) {
         callback(err)
       } else {

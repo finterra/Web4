@@ -1,6 +1,7 @@
 syntax = "proto3";
 
-// package pbkeys;
+package keys;
+
 
 service Keys {
     rpc GenerateKey(GenRequest) returns (GenResponse);
@@ -35,97 +36,97 @@ message AddNameResponse {
 }
 
 message RemoveNameRequest {
-    string keyname = 1;
+    string KeyName = 1;
 }
 
 
 message GenRequest {
-    string passphrase = 1;
-    string curvetype = 2;
-    string keyname = 3;
+    string Passphrase = 1;
+    string CurveType = 2;
+    string KeyName = 3;
 }
 
 message GenResponse {
-    string address = 1;
+    string Address = 1;
 }
 
 message PubRequest {
-    string address = 1;
-    string name = 2;
+    string Address = 1;
+    string Name = 2;
 } 
 
 message PubResponse {
-    bytes pub = 1;
-    string curvetype = 2;
+    bytes PublicKey = 1;
+    string CurveType = 2;
 }
 
 message ImportJSONRequest {
-    string passphrase = 1;
+    string Passphrase = 1;
     string JSON = 2;
 }
 
 message ImportResponse {
-    string address = 1;
+    string Address = 1;
 }
 
 message ImportRequest {
-    string passphrase = 1;
-    string name = 2;
-    string curvetype = 3;
-    bytes keybytes = 4;
+    string Passphrase = 1;
+    string Name = 2;
+    string CurveType = 3;
+    bytes KeyBytes = 4;
 }
 
 message ExportRequest {
-    string passphrase = 1;
-    string name = 2;
-    string address = 3;
+    string Passphrase = 1;
+    string Name = 2;
+    string Address = 3;
 }
 
 message ExportResponse {
-    bytes publickey = 1;
-    bytes privatekey = 2;
-    bytes address = 3;
-    string curvetype = 4;
+    bytes Publickey = 1;
+    bytes Privatekey = 2;
+    bytes Address = 3;
+    string CurveType = 4;
 }
 
 message SignRequest {
-    string passphrase = 1;
-    string address = 2;
-    string name = 3;
-    bytes message = 4;
+    string Passphrase = 1;
+    string Address = 2;
+    string Name = 3;
+    bytes Message = 4;
 }
 
 message SignResponse {
-    bytes signature = 1;
-    string curvetype = 2;
+    bytes Signature = 1;
+    string CurveType = 2;
 }
 
 message VerifyRequest {
-    string curvetype = 1;
-    bytes pub = 2;
-    bytes message = 3;
-    bytes signature = 4;
+    string CurveType = 1;
+    bytes PublicKey = 2;
+    bytes Message = 3;
+    bytes Signature = 4;
 }
 
 message HashRequest {
-    string hashtype = 1;
-    bytes message = 2;
+    string Hashtype = 1;
+    bytes Message = 2;
 }
 
 message HashResponse {
-    string hash = 1;
+    string Hash = 1;
 }
 
-message Key {
-    string address = 1;
-    string keyname = 2;
+message KeyID {
+    string Address = 1;
+    string KeyName = 2;
 }
 
 message ListResponse {
-    repeated Key key = 1;
+    repeated KeyID key = 1;
 }
 
 message AddNameRequest {
-    string keyname = 1;
-    string address = 2;
+    string Keyname = 1;
+    string Address = 2;
 }

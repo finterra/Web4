@@ -40,7 +40,6 @@ module.exports = class AccountgRPC {
    *   addressParam parameter 
    *   @address bytes  
    */
-  
  
     GetAccount(addressParam,callback){
         this.client.getAccount(addressParam, function (err, response) {
