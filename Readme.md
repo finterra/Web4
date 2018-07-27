@@ -11,24 +11,20 @@ Web4 consists of bindings for all the RPC methods. All functions are of the form
  
 Github INFORMATION - LINK, CLONING, AND INSTALLATION
 
-     1.	Link :  https://github.com/finterra/Web4
+    Link :  https://github.com/finterra/Web4
 
-     2.	Cloning : Create a project folder, for example, Web4. Switch to the project folder and clone the Web4 repository by running the following command: 
+    Cloning : Create a project folder, for example, Web4. Switch to the project folder and clone the Web4 repository by running the following command: 
 
-     git clone https://github.com/finterra/Web4.git
+    git clone https://github.com/finterra/Web4.git
 
-     3.	Installation: 
-     
-     
-    	Installation Prerequisites
-
+    Installation:  
+    Installation Prerequisites
+    
       Git
       Node.js version 6 or higher
      (You can check the installed version of Node.js with the command:
       $ node –-version)
-
-	   Install all dependencies, by running the following command:
-
+     Install all dependencies, by running the following command:
      npm install
  
     FOLDER STRUCTURE AND MODULE DESCRIPTION
@@ -49,14 +45,12 @@ Github INFORMATION - LINK, CLONING, AND INSTALLATION
 
 
 The module description is as follows:
+           
+    Web4: this is the project folder name
+    src: This is the source folder, which lists all the modules that are a part of the Web4 library.
+    lib: This is the sub-folder within the src folder.
 
-	Web4: this is the project folder name
-
-	src: This is the source folder, which lists all the modules that are a part of the Web4 library.
-
-	lib: This is the sub-folder within the src folder.
-
-	account.js: This module consists of all information related to accounts that are registered on blockchain. Each account has a unique address. 
+    account.js: This module consists of all information related to accounts that are registered on blockchain. Each account has a unique address. 
 
 It includes methods that are responsible for returning the account object and its related properties, including the following:
 
