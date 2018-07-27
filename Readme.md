@@ -30,18 +30,18 @@ Github INFORMATION - LINK, CLONING, AND INSTALLATION
     FOLDER STRUCTURE AND MODULE DESCRIPTION
     
     The folder structure is as follows:
-   •	Web4 
-   ➢	src 
-   •	lib
-   •	account.js
-   •	blockchain.js
-   •	consensus.js
-   •	namereg.js
-   •	network.js
-   •	server.js
-   •	transaction.js
-   ➢	index.js
-   ➢	web4.js
+    •	Web4 
+    ➢	src 
+    •	lib
+    •	account.js
+    •	blockchain.js
+    •	consensus.js
+    •	namereg.js
+    •	network.js
+    •	server.js
+    •	transaction.js
+    ➢	index.js
+    ➢	web4.js
 
 
 The module description is as follows:
