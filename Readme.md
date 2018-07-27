@@ -153,11 +153,11 @@ Various methods to access the transaction details are listed as follows:
 ➢	broadcastTx(<transaction string>,<callback>): Returns the transaction object. This method broadcasts transactions to the Finterra Blockchain. For accessing these details, run the following command by passing the transaction key as a parameter:
 <object.result.TransactAndHold>
 
-➢	call(<from_address string>, <to_address string>, <data>,<callback>): 
+➢  call(<from_address string>, <to_address string>, <data>,<callback>): 
 	   Returns the transaction object. This method provides read-only access to the smart contract. It is used to retrieve the data of the contract account storage. In order to access these details, run the following command by passing the sender address, receiver address, and data as parameters:
 <object.result.Call>
 
-➢        callCode(<from_address string>, <code string>, <data string>,<callback>):Returns the transaction object. This method is a tool for accessing the VM directly. callCode works in the same way as call(), except that the compiled code is passed as parameter in place of the to_address. It is used to retrieve the data of the contract account storage. In order to access these details, run the following command :
+➢  callCode(<from_address string>, <code string>,<data string>,<callback>):Returns the transaction object. This method is a tool for accessing the VM directly. callCode works in the same way as call(), except that the compiled code is passed as parameter in place of the to_address. It is used to retrieve the data of the contract account storage. In order to access these details, run the following command :
   <object.result.callCode>
 
 web4.js: This file serves as the entry point for all modules and execution on the Finterra blockchain. It creates the web4 object, for accessing all information related to the codebase.
