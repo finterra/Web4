@@ -159,40 +159,40 @@ Various methods to access the transaction details are listed as follows:
 ➢	broadcastTx(<transaction string>,<callback>): Returns the transaction object. This method broadcasts transactions to the Finterra Blockchain. For accessing these details, run the following command by passing the transaction key as a parameter:
 <object.result.TransactAndHold>
 
-➢	call(<from_address string>, <to_address string>, <data>,<callback>): Returns the transaction object. This method provides read-only access to the smart contract. It is used to retrieve the data of the contract account storage. In order to access these details, run the following command by passing the sender address, receiver address, and data as parameters:
+➢	call(<from_address string>, <to_address string>, <data>,<callback>): 
+	   Returns the transaction object. This method provides read-only access to the smart contract. It is used to retrieve the data of the contract account storage. In order to access these details, run the following command by passing the sender address, receiver address, and data as parameters:
 <object.result.Call>
 
-➢	callCode(<from_address string>, <code string>, <data string>,<callback>): Returns the transaction object. This method is a tool for accessing the VM directly. callCode works in the same way as call(), except that the compiled code is passed as parameter in place of the to_address. It is used to retrieve the data of the contract account storage. In order to access these details, run the following command :
+ callCode(<from_address string>, <code string>, <data string>,<callback>): 
+          Returns the transaction object. This method is a tool for accessing the VM directly. callCode works in the same way as call(), except that the compiled code is passed as parameter in place of the to_address. It is used to retrieve the data of the contract account storage. In order to access these details, run the following command :
 <object.result.callCode>
 
-	web4.js: This file serves as the entry point for all modules and execution on the Finterra blockchain. It creates the web4 object, for accessing all information related to the codebase.
+web4.js: This file serves as the entry point for all modules and execution on the Finterra blockchain. It creates the web4 object, for accessing all information related to the codebase.
  
-USAGE	
-
-
-Steps to use the web4 library are as follows:
+    USAGE	
+  Steps to use the web4 library are as follows:
 
 1.	Create a file at the root level. For example, web4_usage.js.
 
 2.	Require the web4.js module in this file by providing its path, as follows:
 
-var web4=require(‘<path>/web4.js’);
+        var web4=require(‘<path>/web4.js’);
 
 3.	Create an object of the above class by providing the URL of the Finterra Blockchain server as the parameter, as follows:
 
-var web4Object=new web4(‘<URL>’);
+        var web4Object=new web4(‘<URL>’);
 
-This will provide access to all the methods and modules in the Web4 library.
+   This will provide access to all the methods and modules in the Web4 library.
 
 4.	Access the methods, by using the web4 object and dot operator, as follows:
 
-web4Object.<method name>;
+       web4Object.<method name>;
 
 For example,
 
-web4Object.getBalance(<account address>);
+     web4Object.getBalance(<account address>);
 
-Note: Currently, only methods related to account information are accessible by using the above steps. In order to access other methods, refer to the functions added in the web4.js file, and create similar methods in this file itself.  
+    Note: Currently, only methods related to account information are accessible by using the above steps. In order to access other   methods, refer to the functions added in the web4.js file, and create similar methods in this file itself.  
 
 For example, function to access the balance of an account is as follows:
 
