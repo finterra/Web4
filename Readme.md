@@ -34,8 +34,8 @@ Github INFORMATION - LINK, CLONING, AND INSTALLATION
     FOLDER STRUCTURE AND MODULE DESCRIPTION
     
     The folder structure is as follows:
-    •	Web4 
-    ➢	src 
+   •	Web4 
+   ➢	src 
    •	lib
    •	account.js
    •	blockchain.js
@@ -61,33 +61,33 @@ The module description is as follows:
 It includes methods that are responsible for returning the account object and its related properties, including the following:
 
 ➢	getAccounts(): Returns an object, listing all accounts registered on the Finterra blockchain.
-➢	getAccount(<address string>,< function callback>): Returns the object of a particular account. The address of the account will need to be passed a parameter to retrieve this information. 
-➢	getBalance(<address string>, <function callback>): Returns the object of a particular account. The address of the account will need to be passed a parameter to retrieve this information. The balance can be retrieved using:
+➢	getAccount(<address string>,<function callback>): Returns the object of a particular account. The address of the account will need to be passed a parameter to retrieve this information. 
+➢	getBalance(<address string>,<function callback>): Returns the object of a particular account. The address of the account will need to be passed a parameter to retrieve this information. The balance can be retrieved using:
 <object>.result.Account.Balance
 ➢	getSequence(<address string>, <function callback>): Returns the object of a particular account. Sequence is the number of transactions associated with a particular account. It returns an integer value.
 The address of the account will need to be passed a parameter to retrieve this information. The sequence can be retrieved using:
 <object>.result.Account.Sequence
 ➢	getStorage(<address string>, <function callback>): Returns the object of a particular contract. Storage consists of all deployed contracts, along with their state variables and methods. The address of the account will need to be passed a parameter to retrieve this information.
 
-➢	getStorageAt(<address string>, < key>,<function callback>): Returns the object of a particular contract storage. The address of a contract and key of the given account will need to be passed as a parameter to retrieve this information.
+➢ getStorageAt(<address string>, < key>,<function callback>): Returns the object of a particular contract storage. The address of a contract and key of the given account will need to be passed as a parameter to retrieve this information.
 
-•	blockchain.js: This module consists of all information related to blockchain.
+•blockchain.js: This module consists of all information related to blockchain.
 It includes methods that are responsible for returning the blockchain object and its related properties, including the following:
 
-➢	getInfo(<callback>): Returns the blockchain object, listing all information associated with the  
-➢	getChainId(<callback>): Returns the blockchain object. Chain ID is the unique identifier for each chain that exists on the Finterra blockchain network. It can be retrieved by running the following command:
+➢getInfo(<callback>): Returns the blockchain object, listing all information associated with the  
+➢getChainId(<callback>): Returns the blockchain object. Chain ID is the unique identifier for each chain that exists on the Finterra blockchain network. It can be retrieved by running the following command:
 <object>.result.ChainID
 
 ➢	getGenesisHash(<callback>): Returns the blockchain object. Genesis Hash is the hash of the first block deployes on the Finterra network. It can be retrieved by running the following command:
 <object>.result.GenesisHash
 
-➢	getLatestBlockHeight(<callback>): Returns the blockchain object. The latest block height can be retrieved by running the following command:
+➢getLatestBlockHeight(<callback>): Returns the blockchain object. The latest block height can be retrieved by running the following command:
 <object>.result. LatestBlockHeight
 
-➢	getLatestBlock(<callback>): Returns the blockchain object. The latest block can be retrieved by running the following command:
+➢getLatestBlock(<callback>): Returns the blockchain object. The latest block can be retrieved by running the following command:
 <object>.result. LatestBlock
 
-➢	getBlocks(<filter string>,<callback>): Returns the blockchain object. The filter will need to be passed as a parameter to retrieve this information. Blocks from minimum to maximum height can be retrieved by running the following command:
+➢getBlocks(<filter string>,<callback>): Returns the blockchain object. The filter will need to be passed as a parameter to retrieve this information. Blocks from minimum to maximum height can be retrieved by running the following command:
 <object>.result.Blocks
 
 ➢	getBlock(<height integer>,<callback>): Returns the blockchain object. The height of a required block will need to be passed as a parameter to retrieve this information. Block of a particular height can be retrieved by running the following command:
@@ -196,7 +196,7 @@ Note: Currently, only methods related to account information are accessible by u
 
 For example, function to access the balance of an account is as follows:
 
-  getBalance(address) {   
+      getBalance(address) {   
                 return new Promise((resolve, reject) => {
                     let returnBalance;
                     try {
